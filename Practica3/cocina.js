@@ -1,49 +1,15 @@
-// INVESTIGAR: filter(), find()
-// OBJETIVO: Buscar productos baratos, caros, bebidas, postres
+export const catalogo = [
+    { id: 1, nombre: "Pizza", precio: 150, categoria: "comida", promocion: false },
+    { id: 2, nombre: "Hamburguesa Clásica", precio: 120, categoria: "comida", promocion: true },
+    { id: 3, nombre: "Ensalada César", precio: 95, categoria: "comida", promocion: false },
+    { id: 4, nombre: "Refresco 500ml", precio: 35, categoria: "bebida", promocion: false },
+    { id: 5, nombre: "Agua de Sabor", precio: 25, categoria: "bebida", promocion: true },
+    { id: 6, nombre: "Pastel de Chocolate", precio: 80, categoria: "postre", promocion: false },
+    { id: 7, nombre: "Helado de Vainilla", precio: 45, categoria: "postre", promocion: true }
+];
 
-import { catalogo } from './catalogo.js';
-
-// Productos baratos (precio < 40)
-export function buscarProductosBaratos() {
-  const baratos = catalogo.filter(producto => producto.precio < 40);
-  console.log("=== PRODUCTOS BARATOS (< $40) ===");
-  baratos.forEach(p => console.log(`💰 ${p.nombre} - $${p.precio}`));
-  return baratos;
-}
-
-// Productos caros (precio >= 60)
-export function buscarProductosCaros() {
-  const caros = catalogo.filter(producto => producto.precio >= 60);
-  console.log("=== PRODUCTOS CAROS (≥ $60) ===");
-  caros.forEach(p => console.log(`💎 ${p.nombre} - $${p.precio}`));
-  return caros;
-}
-
-// Buscar bebidas
-export function buscarBebidas() {
-  const bebidas = catalogo.filter(producto => producto.categoria === "Bebida");
-  console.log("=== BEBIDAS ===");
-  bebidas.forEach(p => console.log(`☕ ${p.nombre} - $${p.precio} (${p.tipo})`));
-  return bebidas;
-}
-
-// Buscar postres (pastelería o pan)
-export function buscarPostres() {
-  const postres = catalogo.filter(producto => 
-    producto.categoria === "Comida" && (producto.tipo === "Pastelería" || producto.tipo === "Pan")
-  );
-  console.log("=== POSTRES ===");
-  postres.forEach(p => console.log(`🍰 ${p.nombre} - $${p.precio}`));
-  return postres;
-}
-
-// Buscar producto específico por ID con find()
-export function buscarProductoPorId(id) {
-  const producto = catalogo.find(p => p.id === id);
-  if (producto) {
-    console.log(`✅ Producto encontrado: ${producto.nombre} - $${producto.precio}`);
-  } else {
-    console.log(`❌ No se encontró producto con ID ${id}`);
-  }
-  return producto;
-}
+// Buscar productos usando filter() y find()
+export const obtenerPorCategoria = (cat) => catalogo.filter(p => p.categoria === cat);
+export const obtenerProductosBaratos = () => catalogo.filter(p => p.precio < 50);
+export const obtenerProductosCaros = () => catalogo.filter(p => p.precio >= 100);
+export const buscarProductoPorId = (id) => catalogo.find(p => p.id === id);
